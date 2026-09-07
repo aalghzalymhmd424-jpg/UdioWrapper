@@ -23,7 +23,8 @@ class UdioWrapper:
         if not self.captcha_api_key:
             return None
         try:
-            submit_url = "https://2captcha.com"
+            submit_url = "https://api.2captcha.com/in.php"
+
 
             payload = {
                 'key': self.captcha_api_key,
@@ -36,6 +37,7 @@ class UdioWrapper:
             if response.get('status') == 1:
                 task_id = response.get('request')
                 result_url = f"https://2captcha.com{self.captcha_api_key}&action=get&id={task_id}&json=1"
+
 
                 for _ in range(24):
                     time.sleep(5)
